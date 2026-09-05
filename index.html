@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+>
+
+<title>Login & Signup</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:"Inter",sans-serif;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.85),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #f3fff2,
+            #dff3ce,
+            #b9dd91
+        );
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.auth-card{
+    width:100%;
+    max-width:430px;
+
+    background:rgba(255,255,255,.94);
+
+    border:1px solid rgba(255,255,255,.75);
+
+    border-radius:24px;
+
+    padding:32px;
+
+    box-shadow:
+        0 20px 60px rgba(50,85,35,.15);
+
+    backdrop-filter:blur(16px);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+    width:54px;
+    height:54px;
+
+    margin:0 auto 15px;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#239b56;
+
+    color:white;
+
+    font-size:24px;
+    font-weight:800;
+
+    box-shadow:
+        0 10px 24px rgba(35,155,86,.25);
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.heading{
+    text-align:center;
+    margin-bottom:26px;
+}
+
+.heading h1{
+    font-size:25px;
+    color:#1c2d23;
+
+    margin-bottom:7px;
+}
+
+.heading p{
+    color:#718077;
+    font-size:13px;
+    line-height:1.5;
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.tabs{
+    display:flex;
+
+    background:#f1f5f1;
+
+    padding:5px;
+
+    border-radius:13px;
+
+    margin-bottom:25px;
+}
+
+.tab{
+    flex:1;
+
+    border:none;
+    background:transparent;
+
+    padding:11px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:14px;
+    font-weight:700;
+
+    color:#7b887f;
+
+    transition:.25s;
+}
+
+.tab.active{
+    background:#ffffff;
+    color:#17864a;
+
+    box-shadow:
+        0 4px 15px rgba(30,75,45,.10);
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form{
+    display:none;
+}
+
+.form.active{
+    display:block;
+}
+
+.input-group{
+    margin-bottom:17px;
+}
+
+.input-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#36463c;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.input-box{
+    position:relative;
+}
+
+.input-box input{
+    width:100%;
+    height:49px;
+
+    padding:0 15px;
+
+    border:1px solid #dfe7e1;
+
+    border-radius:12px;
+
+    outline:none;
+
+    background:#fbfdfb;
+
+    color:#26352c;
+
+    font-size:14px;
+
+    transition:.2s;
+}
+
+.input-box input:focus{
+    border-color:#32a466;
+
+    background:#ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(50,164,102,.10);
+}
+
+
+/* =========================
+   PASSWORD EYE
+========================= */
+
+.password-box input{
+    padding-right:65px;
+}
+
+.show-btn{
+    position:absolute;
+
+    right:13px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    border:none;
+    background:none;
+
+    color:#239b56;
+
+    font-size:11px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+
+/* =========================
+   FORGOT
+========================= */
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-top:-4px;
+    margin-bottom:20px;
+
+    font-size:12px;
+}
+
+.remember{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:#66756c;
+}
+
+.remember input{
+    accent-color:#239b56;
+}
+
+.forgot{
+    color:#17864a;
+
+    font-weight:700;
+    text-decoration:none;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.submit-btn{
+    width:100%;
+    height:50px;
+
+    border:none;
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2aac65,
+            #17894b
+        );
+
+    color:#ffffff;
+
+    font-size:14px;
+    font-weight:800;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 24px rgba(28,145,79,.24);
+
+    transition:.2s;
+}
+
+.submit-btn:hover{
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 13px 28px rgba(28,145,79,.28);
+}
+
+.submit-btn:active{
+    transform:scale(.98);
+}
+
+.submit-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+    transform:none;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin:23px 0;
+
+    color:#a1aca5;
+
+    font-size:11px;
+}
+
+.divider::before,
+.divider::after{
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:#e7ece8;
+}
+
+
+/* =========================
+   GOOGLE BUTTON
+========================= */
+
+.google-btn{
+    width:100%;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:9px;
+
+    border:1px solid #e1e8e3;
+
+    border-radius:12px;
+
+    background:#ffffff;
+
+    color:#35433a;
+
+    font-size:13px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.google-icon{
+    width:23px;
+    height:23px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f2f4f3;
+
+    font-size:12px;
+    font-weight:800;
+}
+
+
+/* =========================
+   BOTTOM TEXT
+========================= */
+
+.bottom-text{
+    text-align:center;
+
+    margin-top:22px;
+
+    color:#7b887f;
+
+    font-size:12px;
+}
+
+.bottom-text button{
+    border:none;
+    background:none;
+
+    color:#168649;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    display:none;
+
+    margin-bottom:16px;
+
+    padding:11px 13px;
+
+    border-radius:10px;
+
+    font-size:12px;
+    font-weight:600;
+}
+
+.message.success{
+    display:block;
+
+    background:#e8f9ee;
+    color:#19804b;
+
+    border:1px solid #c8efd6;
+}
+
+.message.error{
+    display:block;
+
+    background:#fff0ef;
+    color:#c43a32;
+
+    border:1px solid #ffd4d1;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    body{
+        align-items:flex-start;
+        padding:18px 13px;
+    }
+
+    .auth-card{
+        margin-top:25px;
+
+        padding:25px 20px;
+
+        border-radius:20px;
+    }
+
+    .heading h1{
+        font-size:22px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="auth-card">
+
+    <div class="logo">
+        C
+    </div>
+
+
+    <div class="heading">
+
+        <h1 id="mainTitle">
+            Welcome Back
+        </h1>
+
+        <p id="mainSubtitle">
+            Login to continue to your account
+        </p>
+
+    </div>
+
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            id="loginTab"
+            onclick="showLogin()"
+        >
+            Login
+        </button>
+
+        <button
+            class="tab"
+            id="signupTab"
+            onclick="showSignup()"
+        >
+            Sign Up
+        </button>
+
+    </div>
+
+
+    <div
+        class="message"
+        id="message"
+    ></div>
+
+
+    <!-- =========================
+         LOGIN FORM
+    ========================== -->
+
+    <form
+        class="form active"
+        id="loginForm"
+        onsubmit="loginUser(event)"
+    >
+
+        <div class="input-group">
+
+            <label>Email Address</label>
+
+            <div class="input-box">
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <div class="input-box password-box">
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="show-btn"
+                    onclick="togglePassword('loginPassword',this)"
+                >
+                    Show
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <label class="remember">
+
+                <input type="checkbox">
+
+                Remember me
+
+            </label>
+
+
+            <a
+                href="#"
+                class="forgot"
+                onclick="forgotPassword(event)"
+            >
+                Forgot Password?
+            </a>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="submit-btn"
+        >
+            Login
+        </button>
+
+
+        <div class="divider">
+            OR CONTINUE WITH
+        </div>
+
+
+        <button
+            type="button"
+            class="google-btn"
+            onclick="loginWithGoogle()"
+        >
+
+            <span class="google-icon">
+                G
+            </span>
+
+            Continue with Google
+
+        </button>
+
+
+        <div class="bottom-text">
+
+            Don't have an account?
+
+            <button
+                type="button"
+                onclick="showSignup()"
+            >
+                Sign Up
+            </button>
+
+        </div>
+
+    </form>
+
+
+
+    <!-- =========================
+         SIGNUP FORM
+    ========================== -->
+
+    <form
+        class="form"
+        id="signupForm"
+        onsubmit="signupUser(event)"
+    >
+
+
+        <div class="input-group">
+
+            <label>Full Name</label>
+
+            <div class="input-box">
+
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Email Address</label>
+
+            <div class="input-box">
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <div class="input-box password-box">
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Create password"
+                    minlength="6"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="show-btn"
+                    onclick="togglePassword('signupPassword',this)"
+                >
+                    Show
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Confirm Password</label>
+
+            <div class="input-box password-box">
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="show-btn"
+                    onclick="togglePassword('confirmPassword',this)"
+                >
+                    Show
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="submit-btn"
+        >
+            Create Account
+        </button>
+
+
+        <div class="bottom-text">
+
+            Already have an account?
+
+            <button
+                type="button"
+                onclick="showLogin()"
+            >
+                Login
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* =========================
+   SUPABASE CONFIG
+========================= */
+
+/*
+  1) Supabase Dashboard -> Project Settings -> API
+  2) Paste your Project URL below
+  3) Paste your Publishable/anon public key below
+
+  IMPORTANT:
+  Never place service_role / secret key in browser HTML.
+*/
+const SUPABASE_URL = "https://rdttbusjvmjmvbfmwgqz.supabase.co/";
+const SUPABASE_ANON_KEY = "sb_publishable_XH8J7Ca4jCk0-VpOTwV8Ag_Cz3PpcKv";
+
+const { createClient } = supabase;
+
+const supabaseClient = createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY,
+    {
+        auth:{
+            persistSession:true,
+            autoRefreshToken:true,
+            detectSessionInUrl:true
+        }
+    }
+);
+
+
+/* =========================
+   SWITCH TO LOGIN
+========================= */
+
+function showLogin(){
+
+    document
+        .getElementById("loginForm")
+        .classList.add("active");
+
+    document
+        .getElementById("signupForm")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("loginTab")
+        .classList.add("active");
+
+    document
+        .getElementById("signupTab")
+        .classList.remove("active");
+
+
+    document.getElementById("mainTitle").innerText =
+        "Welcome Back";
+
+    document.getElementById("mainSubtitle").innerText =
+        "Login to continue to your account";
+
+
+    clearMessage();
+
+}
+
+
+/* =========================
+   SWITCH TO SIGNUP
+========================= */
+
+function showSignup(){
+
+    document
+        .getElementById("signupForm")
+        .classList.add("active");
+
+    document
+        .getElementById("loginForm")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("signupTab")
+        .classList.add("active");
+
+    document
+        .getElementById("loginTab")
+        .classList.remove("active");
+
+
+    document.getElementById("mainTitle").innerText =
+        "Create Account";
+
+    document.getElementById("mainSubtitle").innerText =
+        "Sign up to get started";
+
+
+    clearMessage();
+
+}
+
+
+/* =========================
+   SHOW / HIDE PASSWORD
+========================= */
+
+function togglePassword(id,button){
+
+    const input =
+        document.getElementById(id);
+
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+        button.innerText = "Hide";
+
+    }else{
+
+        input.type = "password";
+
+        button.innerText = "Show";
+
+    }
+
+}
+
+
+/* =========================
+   SIGNUP WITH SUPABASE
+========================= */
+
+async function signupUser(event){
+
+    event.preventDefault();
+    clearMessage();
+
+    const name =
+        document.getElementById("signupName").value.trim();
+
+    const email =
+        document.getElementById("signupEmail").value.trim().toLowerCase();
+
+    const password =
+        document.getElementById("signupPassword").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+
+    if(!name){
+        showMessage("Please enter your full name.","error");
+        return;
+    }
+
+    if(password.length < 6){
+        showMessage(
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+        return;
+    }
+
+    if(password !== confirmPassword){
+        showMessage("Passwords do not match.","error");
+        return;
+    }
+
+
+    const button =
+        document.querySelector("#signupForm .submit-btn");
+
+    const oldText = button.innerText;
+
+    button.disabled = true;
+    button.innerText = "Creating Account...";
+
+
+    try{
+
+        const { data,error } =
+        await supabaseClient.auth.signUp({
+
+            email:email,
+            password:password,
+
+            options:{
+                data:{
+                    full_name:name
+                }
+            }
+
+        });
+
+
+        if(error){
+            showMessage(error.message,"error");
+            return;
+        }
+
+
+        document.getElementById("signupForm").reset();
+
+
+        /*
+          If Email Confirmation is ON:
+          data.user exists, but data.session is null.
+        */
+        if(data.user && !data.session){
+
+            showMessage(
+                "Account created. Please check your email and confirm your account.",
+                "success"
+            );
+
+            document.getElementById("loginEmail").value = email;
+
+            setTimeout(()=>{
+                showLogin();
+                document.getElementById("loginEmail").value = email;
+            },1400);
+
+            return;
+        }
+
+
+        /*
+          If Email Confirmation is OFF:
+          Supabase immediately returns a session.
+        */
+        if(data.session){
+
+            showMessage(
+                "Account created successfully. Redirecting...",
+                "success"
+            );
+
+            setTimeout(()=>{
+                window.location.href = "home.html";
+            },800);
+
+        }
+
+
+    }catch(error){
+
+        console.error("Signup error:",error);
+
+        showMessage(
+            "Something went wrong. Please try again.",
+            "error"
+        );
+
+    }finally{
+
+        button.disabled = false;
+        button.innerText = oldText;
+
+    }
+
+}
+
+
+/* =========================
+   LOGIN WITH SUPABASE
+========================= */
+
+async function loginUser(event){
+
+    event.preventDefault();
+    clearMessage();
+
+    const email =
+        document.getElementById("loginEmail").value.trim().toLowerCase();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+
+    if(!email || !password){
+
+        showMessage(
+            "Please enter email and password.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.querySelector("#loginForm .submit-btn");
+
+    const oldText = button.innerText;
+
+    button.disabled = true;
+    button.innerText = "Logging in...";
+
+
+    try{
+
+        const { data,error } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email:email,
+            password:password
+
+        });
+
+
+        if(error){
+
+            showMessage(
+                "Invalid email or password.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(data.user && data.session){
+
+            showMessage(
+                "Login successful. Redirecting...",
+                "success"
+            );
+
+            setTimeout(()=>{
+
+                window.location.href = "home.html";
+
+            },650);
+
+        }
+
+
+    }catch(error){
+
+        console.error("Login error:",error);
+
+        showMessage(
+            "Unable to login. Please try again.",
+            "error"
+        );
+
+    }finally{
+
+        button.disabled = false;
+        button.innerText = oldText;
+
+    }
+
+}
+
+
+/* =========================
+   GOOGLE LOGIN
+========================= */
+
+async function loginWithGoogle(){
+
+    clearMessage();
+
+    try{
+
+        const { error } =
+        await supabaseClient.auth.signInWithOAuth({
+
+            provider:"google",
+
+            options:{
+                redirectTo:
+                    window.location.origin + "/home.html"
+            }
+
+        });
+
+
+        if(error){
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+
+    }catch(error){
+
+        console.error("Google login error:",error);
+
+        showMessage(
+            "Unable to start Google login.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+async function forgotPassword(event){
+
+    event.preventDefault();
+    clearMessage();
+
+    const email =
+        document.getElementById("loginEmail").value.trim().toLowerCase();
+
+
+    if(!email){
+
+        showMessage(
+            "Enter your email address first.",
+            "error"
+        );
+
+        document.getElementById("loginEmail").focus();
+
+        return;
+    }
+
+
+    try{
+
+        const { error } =
+        await supabaseClient.auth.resetPasswordForEmail(
+
+            email,
+
+            {
+                redirectTo:
+                    window.location.origin + "/reset-password.html"
+            }
+
+        );
+
+
+        if(error){
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+            return;
+        }
+
+
+        showMessage(
+            "Password reset link sent to your email.",
+            "success"
+        );
+
+
+    }catch(error){
+
+        console.error("Reset password error:",error);
+
+        showMessage(
+            "Unable to send reset link.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   SESSION CHECK
+========================= */
+
+async function checkExistingSession(){
+
+    try{
+
+        const {
+            data:{
+                session
+            }
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        /*
+          If you want already logged-in users to go directly
+          to home.html, keep this redirect.
+        */
+        if(session){
+
+            window.location.href = "home.html";
+
+        }
+
+    }catch(error){
+
+        console.error("Session check error:",error);
+
+    }
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text,type){
+
+    const message =
+        document.getElementById("message");
+
+    message.innerText = text;
+
+    message.className =
+        "message " + type;
+
+}
+
+
+function clearMessage(){
+
+    const message =
+        document.getElementById("message");
+
+    message.innerText = "";
+
+    message.className =
+        "message";
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+checkExistingSession();
+
+</script>
+
+
+</body>
+</html>
